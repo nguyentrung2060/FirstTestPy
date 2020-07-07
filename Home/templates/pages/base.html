@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- <link rel="stylesheet"  -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+        <title>{% block title %}{% endblock %}</title>
+        <style>
+            html, body{
+                height: 100%;
+                background-color: #f6f6f6;
+            }
+        </style>
+    </head>
+    <body>
+         <div class="container-fluid" style="min-height: 95%;"> <!--#canh giua va tao khoang dem -->
+            <div class="row">
+                <div class="col-sm-2"><!--div chiem 2 1/2 -->
+                    <center><!--canh giua hinh anh -->
+                        <img src="{% static 'images/L.jpg' %}" class="responsive-img" style="max-height:150px"/>
+                    </center>
+                </div> 
+                <div class="col-sm-8">
+                    <center><h1>Test Web Python Django</h1></center>
+                </div>
+                <div class="col-sm-2" style="text-align: right;">
+                        {% if user.username %}
+                            <p>Hello: {{user.username}}</p>
+                            <p><a style="vertical-align: top;" href="{% url 'logout' %}"">Logout</a></p>
+                        {% else %}
+                        <p><a href="{% url 'register' %}"">Register</a> | <a href="{% url 'login' %}"">Login</a></p>
+                        {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="bs-sliderbar" style="background-color: #fff;">
+                        <ul class="nav flex-column">
+                            <li><a href="/"> Thong tin ca nhan</a></li>
+                             <li><a href="{% url 'blog' %}"> blog</a></li><!--/blog -->
+                            <li><a href="{% url 'contact' %}"> contact</a></li><!--/contact -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="container-fluid">
+                        {% block content %}
+    
+                        {% endblock %}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="container-fluid">
+                <a href="a">facebook</a>|<a href="a">Twitter</a>|<a href="a">Blog</a>
+            </div>
+        </footer>
+
+        
+    </body>
+</html>
